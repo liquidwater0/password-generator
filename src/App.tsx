@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import "./scss/App.scss";
 import { Autorenew, ContentCopy } from '@mui/icons-material';
 
@@ -62,11 +62,36 @@ function getSymbols() {
 }
 
 function App() {
+	const [password, setPassword] = useState<string>("");
 	const [passwordLength, setPasswordLength] = useState<number>(10);
 	const [includeUppercase, setIncludeUppercase] = useState<boolean>(true);
 	const [includeLowercase, setIncludeLowercase] = useState<boolean>(true);
 	const [includeNumbers, setIncludeNumbers] = useState<boolean>(true);
 	const [includeSymbols, setIncludeSymbols] = useState<boolean>(true);
+	const [digitArray, setDigitArray] = useState<string[]>([]);
+
+	useEffect(() => {
+		setDigitArray([]);
+		
+		if (includeUppercase) setDigitArray(prev => [...prev, ...getUppercaseLetters()]);
+		if (includeLowercase) setDigitArray(prev => [...prev, ...getLowercaseLetters()]);
+		if (includeNumbers) setDigitArray(prev => [...prev, ...getNumbers()]);
+		if (includeSymbols) setDigitArray(prev => [...prev, ...getSymbols()]);
+	}, [includeUppercase, includeLowercase, includeNumbers, includeSymbols]);
+
+	function generatePassword() {
+		const randomPassword = new Array(passwordLength)
+			.fill("")
+			.map(() => digitArray[Math.floor(Math.random() * digitArray.length)])
+			.join("");
+
+		setPassword(randomPassword);
+	}
+
+	function copyPassword() {
+		navigator.clipboard.writeText(password);
+	}
+	
 
 	return (
 		<div className="App">
@@ -133,7 +158,7 @@ function App() {
 					<button 
 						className="generate-button" 
 						type='button'
-						onClick={() => 4}
+						onClick={generatePassword}
 					>
 						<Autorenew/>
 					</button>
@@ -142,10 +167,13 @@ function App() {
 
 			<div className="main">
 				<div className="password-container">
-					<div className="password">Password</div>
+					<div className="password">{ password }</div>
 					<div className="strength-meter"/>
 				</div>
-				<button className="copy-button">
+				<button 
+					className="copy-button"
+					onClick={copyPassword}
+				>
 					<ContentCopy/>
 				</button>
 			</div>
