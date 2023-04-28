@@ -1,13 +1,14 @@
 import "./scss/App.scss";
 import { ACTIONS, MIN_LENGTH, MAX_LENGTH, usePassword } from "./context/PasswordContext";
 import { Autorenew, ContentCopy } from '@mui/icons-material';
+import Checkbox from "./components/Checkbox";
 
 function App() {
 	const { state, dispatch, generatePassword, copyPassword } = usePassword();
 	const { password, passwordLength, includeUppercase, includeLowercase, includeNumbers, includeSymbols } = state;
 
 	return (
-		<>
+		<main>
 			<aside className="side-bar">
 				<form onSubmit={event => event.preventDefault()}>
 					<ul>
@@ -20,51 +21,57 @@ function App() {
 									min={MIN_LENGTH}
 									max={MAX_LENGTH}
 									value={passwordLength}
-									onChange={event => dispatch({ type: ACTIONS.UPDATE_PASSWORD_LENGTH, payload: event.target.valueAsNumber })}
+									onChange={event => {
+										dispatch({ type: ACTIONS.UPDATE_PASSWORD_LENGTH, payload: event.target.valueAsNumber });
+									}}
 								/>
 							</div>
 						</li>
 						<li>
 							<div className="form-checkbox-item">
 								<label htmlFor="uppercaseCheckbox">Include Uppercase</label>
-								<input 
-									className='checkbox'
-									type="checkbox" 
-									checked={includeUppercase}
-									onChange={event => dispatch({ type: ACTIONS.UPDATE_INCLUDE_UPPERCASE, payload: event.target.checked })}
+								<Checkbox
+									id="uppercaseCheckbox"
+									defaultChecked={includeUppercase}
+									onChange={event => {
+										dispatch({ type: ACTIONS.UPDATE_INCLUDE_UPPERCASE, payload: (event.target as HTMLInputElement).checked });
+									}}
 								/>
 							</div>
 						</li>
 						<li>
 							<div className="form-checkbox-item">
-								<label htmlFor="uppercaseCheckbox">Include Lowercase</label>
-								<input 
-									className='checkbox'
-									type="checkbox"
-									checked={includeLowercase}
-									onChange={event => dispatch({ type: ACTIONS.UPDATE_INCLUDE_LOWERCASE, payload: event.target.checked })}
+								<label htmlFor="lowercaseCheckbox">Include Lowercase</label>
+								<Checkbox
+									id="lowercaseCheckbox"
+									defaultChecked={includeLowercase}
+									onChange={event => {
+										dispatch({ type: ACTIONS.UPDATE_INCLUDE_LOWERCASE, payload: (event.target as HTMLInputElement).checked });
+									}}
 								/>
 							</div>
 						</li>
 						<li>
 							<div className="form-checkbox-item">
-								<label htmlFor="uppercaseCheckbox">Include Numbers</label>
-								<input 
-									className='checkbox'
-									type="checkbox"
-									checked={includeNumbers}
-									onChange={event => dispatch({ type: ACTIONS.UPDATE_INCLUDE_NUMBERS, payload: event.target.checked })}
+								<label htmlFor="numbersCheckbox">Include Numbers</label>
+								<Checkbox
+									id="numbersCheckbox"
+									defaultChecked={includeNumbers}
+									onChange={event => {
+										dispatch({ type: ACTIONS.UPDATE_INCLUDE_NUMBERS, payload: (event.target as HTMLInputElement).checked });
+									}}
 								/>
 							</div>
 						</li>
 						<li>
 							<div className="form-checkbox-item">
-								<label htmlFor="uppercaseCheckbox">Include Symbols</label>
-								<input 
-									className='checkbox'
-									type="checkbox"
-									checked={includeSymbols}
-									onChange={event => dispatch({ type: ACTIONS.UPDATE_INCLUDE_SYMBOLS, payload: event.target.checked })}
+								<label htmlFor="symbolsCheckbox">Include Symbols</label>
+								<Checkbox
+									id="symbolsCheckbox"
+									defaultChecked={includeSymbols}
+									onChange={event => {
+										dispatch({ type: ACTIONS.UPDATE_INCLUDE_SYMBOLS, payload: (event.target as HTMLInputElement).checked });
+									}}
 								/>
 							</div>
 						</li>
@@ -92,7 +99,7 @@ function App() {
 					<ContentCopy/>
 				</button>
 			</div>
-		</>
+		</main>
 	)
 }
 
