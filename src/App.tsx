@@ -6,7 +6,7 @@ import GenerateButton from "./components/GenerateButton";
 import CopyButton from "./components/CopyButton";
 
 function App() {
-	const { state, dispatch, generatePassword, copyPassword } = usePassword();
+	const { state, dispatch } = usePassword();
 	const { password, passwordLength, includeUppercase, includeLowercase, includeNumbers, includeSymbols } = state;
 
 	return (
