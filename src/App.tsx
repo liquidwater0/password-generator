@@ -107,10 +107,10 @@ function App() {
 			<div className="main">
 				<div className="password-container">
 					<div className="password">{ password }</div>
-					<div 
+					{/* <div 
 						className="strength-meter"
 						aria-label="strong password"
-					/>
+					/> */}
 				</div>
 				<button 
 					className="copy-button"
