@@ -89,7 +89,10 @@ export default function PasswordProvider({ children }: { children: ReactNode }) 
     function generatePassword() {
 		const randomPassword = new Array(passwordLength)
 			.fill("")
-			.map(() => digitArray[Math.floor(Math.random() * digitArray.length)])
+			.map(() => {
+				const randomIndex = crypto.getRandomValues(new Uint32Array(1))[0] % digitArray.length;
+				return digitArray[randomIndex];
+			})
 			.join("");
 
 		dispatch({ type: ACTIONS.UPDATE_PASSWORD, payload: randomPassword });
