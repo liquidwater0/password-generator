@@ -42,9 +42,12 @@ button {
 }
 
 .side-bar {
+    --border-radius: 2rem;
+
     position: relative;
     background-color: var(--primary-color-1);
     padding: 2rem;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
 
     ul {
         display: flex;
@@ -167,6 +170,7 @@ button {
 
     .side-bar {
         grid-area: sidebar;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
 
         ul {
             display: grid;
