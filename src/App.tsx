@@ -61,9 +61,12 @@ function getSymbols() {
 	return symbols;
 }
 
+const MIN_LENGTH = 5;
+const MAX_LENGTH = 50;
+
 function App() {
 	const [password, setPassword] = useState<string>("");
-	const [passwordLength, setPasswordLength] = useState<number>(10);
+	const [passwordLength, setPasswordLength] = useState<number>(MIN_LENGTH);
 	const [includeUppercase, setIncludeUppercase] = useState<boolean>(true);
 	const [includeLowercase, setIncludeLowercase] = useState<boolean>(true);
 	const [includeNumbers, setIncludeNumbers] = useState<boolean>(true);
@@ -103,6 +106,8 @@ function App() {
 								<input 
 									className='number-input'
 									type="number"
+									min={MIN_LENGTH}
+									max={MAX_LENGTH}
 									value={passwordLength}
 									onChange={event => setPasswordLength(event.target.valueAsNumber)}
 								/>
