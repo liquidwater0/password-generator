@@ -95,6 +95,8 @@ function App() {
 					<button 
 						className="generate-button" 
 						type='button'
+						title="Generate Password"
+						aria-label="generate password button"
 						onClick={generatePassword}
 					>
 						<Autorenew/>
@@ -105,10 +107,15 @@ function App() {
 			<div className="main">
 				<div className="password-container">
 					<div className="password">{ password }</div>
-					<div className="strength-meter"/>
+					<div 
+						className="strength-meter"
+						aria-label="strong password"
+					/>
 				</div>
 				<button 
 					className="copy-button"
+					title="Copy Password"
+					aria-label="copy password button"
 					onClick={copyPassword}
 				>
 					<ContentCopy/>
