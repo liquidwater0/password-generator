@@ -1,26 +1,10 @@
 import "./scss/App.scss";
-import { usePassword } from "./context/PasswordContext";
+import { ACTIONS, MIN_LENGTH, MAX_LENGTH, usePassword } from "./context/PasswordContext";
 import { Autorenew, ContentCopy } from '@mui/icons-material';
 
-export const MIN_LENGTH = 5;
-export const MAX_LENGTH = 50;
-
 function App() {
-	const { 
-		password, 
-		passwordLength, 
-		includeUppercase, 
-		includeLowercase, 
-		includeNumbers, 
-		includeSymbols,
-		setPasswordLength,
-		setIncludeUppercase,
-		setIncludeLowercase,
-		setIncludeNumbers,
-		setIncludeSymbols,
-		generatePassword,
-		copyPassword
-	} = usePassword();
+	const { state, dispatch, generatePassword, copyPassword } = usePassword();
+	const { password, passwordLength, includeUppercase, includeLowercase, includeNumbers, includeSymbols } = state;
 
 	return (
 		<div className="App">
@@ -36,7 +20,7 @@ function App() {
 									min={MIN_LENGTH}
 									max={MAX_LENGTH}
 									value={passwordLength}
-									onChange={event => setPasswordLength(event.target.valueAsNumber)}
+									onChange={event => dispatch({ type: ACTIONS.UPDATE_PASSWORD_LENGTH, payload: event.target.valueAsNumber })}
 								/>
 							</div>
 						</li>
@@ -47,7 +31,7 @@ function App() {
 									className='checkbox'
 									type="checkbox" 
 									checked={includeUppercase}
-									onChange={event => setIncludeUppercase(event.target.checked)}
+									onChange={event => dispatch({ type: ACTIONS.UPDATE_INCLUDE_UPPERCASE, payload: event.target.checked })}
 								/>
 							</div>
 						</li>
@@ -58,7 +42,7 @@ function App() {
 									className='checkbox'
 									type="checkbox"
 									checked={includeLowercase}
-									onChange={event => setIncludeLowercase(event.target.checked)}
+									onChange={event => dispatch({ type: ACTIONS.UPDATE_INCLUDE_LOWERCASE, payload: event.target.checked })}
 								/>
 							</div>
 						</li>
@@ -69,7 +53,7 @@ function App() {
 									className='checkbox'
 									type="checkbox"
 									checked={includeNumbers}
-									onChange={event => setIncludeNumbers(event.target.checked)}
+									onChange={event => dispatch({ type: ACTIONS.UPDATE_INCLUDE_NUMBERS, payload: event.target.checked })}
 								/>
 							</div>
 						</li>
@@ -80,7 +64,7 @@ function App() {
 									className='checkbox'
 									type="checkbox"
 									checked={includeSymbols}
-									onChange={event => setIncludeSymbols(event.target.checked)}
+									onChange={event => dispatch({ type: ACTIONS.UPDATE_INCLUDE_SYMBOLS, payload: event.target.checked })}
 								/>
 							</div>
 						</li>

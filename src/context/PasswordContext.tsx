@@ -1,28 +1,29 @@
 import { 
     useState, 
     useEffect, 
+	useReducer,
     useContext, 
     createContext, 
     ReactNode, 
-    Dispatch, 
-    SetStateAction 
+    Dispatch,
+	Reducer
 } from "react";
-import { MIN_LENGTH } from "../App";
 
+type State = {
+	password: string,
+	passwordLength: number,
+	includeUppercase: boolean,
+	includeLowercase: boolean,
+	includeNumbers: boolean,
+	includeSymbols: boolean
+}
+type ReducerAction = { type: string, payload: any }
+type ReducerType = Reducer<State, ReducerAction>
 type PasswordContextType = {
-    password: string,
-    passwordLength: number,
-    includeUppercase: boolean,
-    includeLowercase: boolean,
-    includeNumbers: boolean,
-    includeSymbols: boolean,
+    state: State,
+	dispatch: Dispatch<ReducerAction>,
     generatePassword: () => void,
-    copyPassword: () => void,
-    setPasswordLength: Dispatch<SetStateAction<number>>,
-    setIncludeUppercase: Dispatch<SetStateAction<boolean>>,
-    setIncludeLowercase: Dispatch<SetStateAction<boolean>>,
-    setIncludeNumbers: Dispatch<SetStateAction<boolean>>,
-    setIncludeSymbols: Dispatch<SetStateAction<boolean>>
+    copyPassword: () => void
 }
 
 const PasswordContext = createContext<PasswordContextType>(null!);
@@ -90,13 +91,48 @@ function getSymbols() {
 	return symbols;
 }
 
+export const MIN_LENGTH = 5;
+export const MAX_LENGTH = 50;
+export const ACTIONS = {
+	UPDATE_PASSWORD: "updatePassword",
+	UPDATE_PASSWORD_LENGTH: "updatePasswordLength",
+	UPDATE_INCLUDE_UPPERCASE: "updateIncludeUppercase",
+	UPDATE_INCLUDE_LOWERCASE: "updateIncludeLowercase",
+	UPDATE_INCLUDE_NUMBERS: "updateIncludeNumbers",
+	UPDATE_INCLUDE_SYMBOLS: "updateIncludeSymbols"
+} as const;
+
+const initialState: State = {
+	password: "",
+	passwordLength: MIN_LENGTH,
+	includeUppercase: true,
+	includeLowercase: true,
+	includeNumbers: true,
+	includeSymbols: true
+}
+
+function reducer(state: State, action: ReducerAction) {
+	switch(action.type) {
+		case ACTIONS.UPDATE_PASSWORD:
+			return { ...state, password: action.payload };
+		case ACTIONS.UPDATE_PASSWORD_LENGTH:
+			return { ...state, passwordLength: action.payload };
+		case ACTIONS.UPDATE_INCLUDE_UPPERCASE:
+			return { ...state, includeUppercase: action.payload };
+		case ACTIONS.UPDATE_INCLUDE_LOWERCASE:
+			return { ...state, includeLowercase: action.payload };
+		case ACTIONS.UPDATE_INCLUDE_NUMBERS:
+			return { ...state, includeNumbers: action.payload };
+		case ACTIONS.UPDATE_INCLUDE_SYMBOLS:
+			return { ...state, includeSymbols: action.payload };
+		default:
+			return state;
+	}
+}
+
 export default function PasswordProvider({ children }: { children: ReactNode }) {
-    const [password, setPassword] = useState<string>("");
-	const [passwordLength, setPasswordLength] = useState<number>(MIN_LENGTH);
-	const [includeUppercase, setIncludeUppercase] = useState<boolean>(true);
-	const [includeLowercase, setIncludeLowercase] = useState<boolean>(true);
-	const [includeNumbers, setIncludeNumbers] = useState<boolean>(true);
-	const [includeSymbols, setIncludeSymbols] = useState<boolean>(true);
+	const [ state, dispatch] = useReducer<ReducerType>(reducer, initialState);
+	const { password, passwordLength, includeUppercase, includeLowercase, includeNumbers, includeSymbols } = state;
 	const [digitArray, setDigitArray] = useState<string[]>([]);
 
     useEffect(() => {
@@ -114,7 +150,7 @@ export default function PasswordProvider({ children }: { children: ReactNode }) 
 			.map(() => digitArray[Math.floor(Math.random() * digitArray.length)])
 			.join("");
 
-		setPassword(randomPassword);
+		dispatch({ type: ACTIONS.UPDATE_PASSWORD, payload: randomPassword });
 	}
 
 	function copyPassword() {
@@ -122,21 +158,7 @@ export default function PasswordProvider({ children }: { children: ReactNode }) 
 	}
 
     return (
-        <PasswordContext.Provider value={{ 
-            password,
-            passwordLength,
-            includeUppercase,
-            includeLowercase,
-            includeNumbers,
-            includeSymbols,
-            generatePassword, 
-            copyPassword, 
-            setPasswordLength, 
-            setIncludeUppercase, 
-            setIncludeLowercase,
-            setIncludeNumbers,
-            setIncludeSymbols
-        }}>
+        <PasswordContext.Provider value={{ state, dispatch, generatePassword, copyPassword}}>
             { children }
         </PasswordContext.Provider>
     );
