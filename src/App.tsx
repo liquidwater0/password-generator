@@ -13,7 +13,7 @@ function App() {
 			<aside className="side-bar">
 				<form onSubmit={event => event.preventDefault()}>
 					<ul>
-						<li>
+						<li className="length-input-item">
 							<div className="form-input-item">
 								<label htmlFor="lengthInput">Length</label>
 								<NumberInput
