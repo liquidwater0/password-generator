@@ -1,6 +1,7 @@
 import "./scss/App.scss";
 import { ACTIONS, MIN_LENGTH, MAX_LENGTH, usePassword } from "./context/PasswordContext";
 import { Autorenew, ContentCopy } from '@mui/icons-material';
+import NumberInput from "./components/NumberInput";
 import Checkbox from "./components/Checkbox";
 
 function App() {
@@ -15,14 +16,15 @@ function App() {
 						<li>
 							<div className="form-input-item">
 								<label htmlFor="lengthInput">Length</label>
-								<input 
-									className='number-input'
-									type="number"
+								<NumberInput
 									min={MIN_LENGTH}
 									max={MAX_LENGTH}
-									value={passwordLength}
+									defaultValue={passwordLength}
 									onChange={event => {
-										dispatch({ type: ACTIONS.UPDATE_PASSWORD_LENGTH, payload: event.target.valueAsNumber });
+										dispatch({ 
+											type: ACTIONS.UPDATE_PASSWORD_LENGTH, 
+											payload: (event.target as HTMLInputElement).valueAsNumber 
+										});
 									}}
 								/>
 							</div>
@@ -34,7 +36,10 @@ function App() {
 									id="uppercaseCheckbox"
 									defaultChecked={includeUppercase}
 									onChange={event => {
-										dispatch({ type: ACTIONS.UPDATE_INCLUDE_UPPERCASE, payload: (event.target as HTMLInputElement).checked });
+										dispatch({ 
+											type: ACTIONS.UPDATE_INCLUDE_UPPERCASE, 
+											payload: (event.target as HTMLInputElement).checked 
+										});
 									}}
 								/>
 							</div>
@@ -46,7 +51,10 @@ function App() {
 									id="lowercaseCheckbox"
 									defaultChecked={includeLowercase}
 									onChange={event => {
-										dispatch({ type: ACTIONS.UPDATE_INCLUDE_LOWERCASE, payload: (event.target as HTMLInputElement).checked });
+										dispatch({ 
+											type: ACTIONS.UPDATE_INCLUDE_LOWERCASE, 
+											payload: (event.target as HTMLInputElement).checked 
+										});
 									}}
 								/>
 							</div>
@@ -58,7 +66,10 @@ function App() {
 									id="numbersCheckbox"
 									defaultChecked={includeNumbers}
 									onChange={event => {
-										dispatch({ type: ACTIONS.UPDATE_INCLUDE_NUMBERS, payload: (event.target as HTMLInputElement).checked });
+										dispatch({ 
+											type: ACTIONS.UPDATE_INCLUDE_NUMBERS,
+											payload: (event.target as HTMLInputElement).checked 
+										});
 									}}
 								/>
 							</div>
@@ -70,7 +81,10 @@ function App() {
 									id="symbolsCheckbox"
 									defaultChecked={includeSymbols}
 									onChange={event => {
-										dispatch({ type: ACTIONS.UPDATE_INCLUDE_SYMBOLS, payload: (event.target as HTMLInputElement).checked });
+										dispatch({ 
+											type: ACTIONS.UPDATE_INCLUDE_SYMBOLS, 
+											payload: (event.target as HTMLInputElement).checked 
+										});
 									}}
 								/>
 							</div>
