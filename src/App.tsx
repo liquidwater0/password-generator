@@ -19,6 +19,7 @@ function App() {
 								<NumberInput
 									min={MIN_LENGTH}
 									max={MAX_LENGTH}
+									id="lengthInput"
 									defaultValue={passwordLength}
 									onChange={event => {
 										dispatch({ 
