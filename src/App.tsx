@@ -3,6 +3,7 @@ import { ACTIONS, MIN_LENGTH, MAX_LENGTH, usePassword } from "./context/Password
 import { Autorenew, ContentCopy } from '@mui/icons-material';
 import NumberInput from "./components/NumberInput";
 import Checkbox from "./components/Checkbox";
+import GenerateButton from "./components/GenerateButton";
 
 function App() {
 	const { state, dispatch, generatePassword, copyPassword } = usePassword();
@@ -92,15 +93,7 @@ function App() {
 						</li>
 					</ul>
 
-					<button 
-						className="generate-button" 
-						type='button'
-						title="Generate Password"
-						aria-label="generate password button"
-						onClick={generatePassword}
-					>
-						<Autorenew/>
-					</button>
+					<GenerateButton/>
 				</form>
 			</aside>
 

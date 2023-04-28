@@ -71,6 +71,7 @@ button {
 
     .generate-button {
         --font-size: 65px;
+        --translate-x: -50%;
 
         position: absolute;
         display: flex;
@@ -85,11 +86,17 @@ button {
         color: var(--theme-text);
         top: 60%;
         left: 100%;
-        transform: translateX(-50%);
+        transform: translateX(var(--translate-x));
+        transform-origin: center;
         transition: background-color 250ms;
-
+        
         svg {
             font-size: 1em;
+        }
+
+        &.spinning {
+            animation: spin 1s ease-out;
+            transform: translateX(var(--translate-x)) rotate(360deg);
         }
 
         &:hover {
@@ -216,4 +223,9 @@ button {
     .password {
         max-width: 15rem;
     }
+}
+
+@keyframes spin {
+    0% { transform: translateX(var(--translate-x)) rotate(0deg) }
+    100% { transform: translateX(var(--translate-x)) rotate(360deg) }
 }
