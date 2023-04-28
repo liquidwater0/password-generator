@@ -1,9 +1,9 @@
 import "./scss/App.scss";
 import { ACTIONS, MIN_LENGTH, MAX_LENGTH, usePassword } from "./context/PasswordContext";
-import { Autorenew, ContentCopy } from '@mui/icons-material';
 import NumberInput from "./components/NumberInput";
 import Checkbox from "./components/Checkbox";
 import GenerateButton from "./components/GenerateButton";
+import CopyButton from "./components/CopyButton";
 
 function App() {
 	const { state, dispatch, generatePassword, copyPassword } = usePassword();
@@ -105,14 +105,8 @@ function App() {
 						aria-label="strong password"
 					/> */}
 				</div>
-				<button 
-					className="copy-button"
-					title="Copy Password"
-					aria-label="copy password button"
-					onClick={copyPassword}
-				>
-					<ContentCopy/>
-				</button>
+
+				<CopyButton/>
 			</div>
 		</main>
 	)

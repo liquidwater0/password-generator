@@ -155,9 +155,15 @@ button {
         padding: 1em;
         transition: background-color 250ms;
         margin-left: 2rem;
+        transition: scale 250ms;
         
         svg {
             font-size: 1em;
+        }
+        
+        &.animating {
+            animation: fadeOutShadow 500ms forwards;
+            scale: 0.9;
         }
 
         &:hover {
@@ -228,4 +234,9 @@ button {
 @keyframes spin {
     0% { transform: translateX(var(--translate-x)) rotate(0deg) }
     100% { transform: translateX(var(--translate-x)) rotate(360deg) }
+}
+
+@keyframes fadeOutShadow {
+    0% { box-shadow: 0 0 0 0 hsla(0, 0%, 0%, 0.12) }
+    100% { box-shadow: 0 0 0 2.5rem hsla(0, 0%, 0%, 0) }
 }
