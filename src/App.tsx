@@ -92,7 +92,6 @@ function App() {
 		navigator.clipboard.writeText(password);
 	}
 	
-
 	return (
 		<div className="App">
 			<aside className="side-bar">
