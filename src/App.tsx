@@ -7,7 +7,7 @@ function App() {
 	const { password, passwordLength, includeUppercase, includeLowercase, includeNumbers, includeSymbols } = state;
 
 	return (
-		<div className="App">
+		<>
 			<aside className="side-bar">
 				<form onSubmit={event => event.preventDefault()}>
 					<ul>
@@ -92,7 +92,7 @@ function App() {
 					<ContentCopy/>
 				</button>
 			</div>
-		</div>
+		</>
 	)
 }
 

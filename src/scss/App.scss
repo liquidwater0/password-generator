@@ -8,10 +8,141 @@
 }
 
 :root {
-    --primary-color-3: hsl(255, 50%, 50%);
-    --primary-color-1: hsl(255, 50%, 40%);
-    --primary-color-2: hsl(255, 50%, 30%);
+    --primary-color-1: hsl(255, 50%, 50%);
+    --primary-color-2: hsl(255, 50%, 40%);
+    --primary-color-3: hsl(255, 50%, 30%);
 
     --theme-1: hsl(0, 0%, 15%);
     --theme-2: hsl(0, 0%, 20%);
+    --theme-3: hsl(0, 0%, 25%);
+
+    --theme-text: white;
+}
+
+html, body, #root {
+    height: 100%;
+}
+
+#root {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+}
+
+body {
+    background-color: var(--theme-1);
+    color: var(--theme-text);
+}
+
+button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.side-bar {
+    position: relative;
+    background-color: var(--primary-color-1);
+    padding: 2rem;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        list-style: none;
+    }
+
+    .form-input-item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-checkbox-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .generate-button {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 65px;
+        width: 2em;
+        height: 2em;
+        border-radius: 100%;
+        outline: 0.35em solid var(--theme-1);
+        background-color: var(--primary-color-2);
+        color: var(--theme-text);
+        top: 60%;
+        left: 100%;
+        transform: translateX(-50%);
+        transition: background-color 250ms;
+
+        svg {
+            font-size: 1em;
+        }
+
+        &:hover {
+            background-color: var(--primary-color-3);
+        }
+    }
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .password-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .password {
+            background-color: var(--theme-2);
+            padding: 1em;
+            min-width: 10rem;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border-radius: 0.5rem;
+        } 
+
+        .strength-meter {
+            --strength-color: red;
+
+            position: absolute;
+            background-color: var(--strength-color);
+            width: 5rem;
+            height: 0.75rem;
+            border-radius: 1000px;
+            bottom: -2.5rem;
+        }
+    }
+
+    .copy-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--theme-2);
+        color: var(--theme-text);
+        font-size: 2rem;
+        width: 1em;
+        height: 1em;
+        border-radius: 100%;
+        padding: 1em;
+        transition: background-color 250ms;
+        margin-left: 2rem;
+        
+        svg {
+            font-size: 1em;
+        }
+
+        &:hover {
+            background-color: var(--theme-3);
+        }
+    }
 }
