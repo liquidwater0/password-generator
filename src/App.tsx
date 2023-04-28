@@ -1,100 +1,27 @@
-import { useState, useEffect } from 'react';
 import "./scss/App.scss";
+import { usePassword } from "./context/PasswordContext";
 import { Autorenew, ContentCopy } from '@mui/icons-material';
 
-function getUppercaseLetters() {
-	let uppercaseLetters: string[] = [];
-
-	for (let i = 65; i <= 90; i++) {
-		const letter = String.fromCharCode(i);
-		uppercaseLetters.push(letter);
-	}
-
-	return uppercaseLetters;
-}
-
-function getLowercaseLetters() {
-	let lowercaseLetters: string[] = [];
-
-	for (let i = 97; i <= 122; i++) {
-		const letter = String.fromCharCode(i);
-		lowercaseLetters.push(letter);
-	}
-
-	return lowercaseLetters;
-}
-
-function getNumbers() {
-	let numbers: string[] = [];
-
-	for (let i = 48; i <= 57; i++) {
-		const letter = String.fromCharCode(i);
-		numbers.push(letter);
-	}
-
-	return numbers;
-}
-
-function getSymbols() {
-	let symbols: string[] = [];
-
-	for (let i = 33; i <= 47; i++) {
-		const letter = String.fromCharCode(i);
-		symbols.push(letter);
-	}
-
-	for (let i = 58; i <= 64; i++) {
-		const letter = String.fromCharCode(i);
-		symbols.push(letter);
-	}
-
-	for (let i = 91; i <= 96; i++) {
-		const letter = String.fromCharCode(i);
-		symbols.push(letter);
-	}
-
-	for (let i = 123; i <= 126; i++) {
-		const letter = String.fromCharCode(i);
-		symbols.push(letter);
-	}
-
-	return symbols;
-}
-
-const MIN_LENGTH = 5;
-const MAX_LENGTH = 50;
+export const MIN_LENGTH = 5;
+export const MAX_LENGTH = 50;
 
 function App() {
-	const [password, setPassword] = useState<string>("");
-	const [passwordLength, setPasswordLength] = useState<number>(MIN_LENGTH);
-	const [includeUppercase, setIncludeUppercase] = useState<boolean>(true);
-	const [includeLowercase, setIncludeLowercase] = useState<boolean>(true);
-	const [includeNumbers, setIncludeNumbers] = useState<boolean>(true);
-	const [includeSymbols, setIncludeSymbols] = useState<boolean>(true);
-	const [digitArray, setDigitArray] = useState<string[]>([]);
+	const { 
+		password, 
+		passwordLength, 
+		includeUppercase, 
+		includeLowercase, 
+		includeNumbers, 
+		includeSymbols,
+		setPasswordLength,
+		setIncludeUppercase,
+		setIncludeLowercase,
+		setIncludeNumbers,
+		setIncludeSymbols,
+		generatePassword,
+		copyPassword
+	} = usePassword();
 
-	useEffect(() => {
-		setDigitArray([]);
-		
-		if (includeUppercase) setDigitArray(prev => [...prev, ...getUppercaseLetters()]);
-		if (includeLowercase) setDigitArray(prev => [...prev, ...getLowercaseLetters()]);
-		if (includeNumbers) setDigitArray(prev => [...prev, ...getNumbers()]);
-		if (includeSymbols) setDigitArray(prev => [...prev, ...getSymbols()]);
-	}, [includeUppercase, includeLowercase, includeNumbers, includeSymbols]);
-
-	function generatePassword() {
-		const randomPassword = new Array(passwordLength)
-			.fill("")
-			.map(() => digitArray[Math.floor(Math.random() * digitArray.length)])
-			.join("");
-
-		setPassword(randomPassword);
-	}
-
-	function copyPassword() {
-		navigator.clipboard.writeText(password);
-	}
-	
 	return (
 		<div className="App">
 			<aside className="side-bar">
