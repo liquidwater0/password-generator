@@ -26,12 +26,10 @@ function App() {
 										const value = (event.target as HTMLInputElement).valueAsNumber;
 										let payload: number;
 
-										if (value < MIN_LENGTH) {
+										if (value < MIN_LENGTH || isNaN(value)) {
 											payload = MIN_LENGTH;
 										} else if (value > MAX_LENGTH) {
 											payload = MAX_LENGTH;
-										} else if (isNaN(value)) {
-											payload = MIN_LENGTH
 										} else {
 											payload = (event.target as HTMLInputElement).valueAsNumber;
 										}
