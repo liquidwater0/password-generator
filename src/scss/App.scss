@@ -141,6 +141,7 @@ button {
             background-color: var(--theme-2);
             color: var(--theme-text);
             padding: 1em;
+            min-width: 15rem;
             font-size: 1.5rem;
             font-weight: bold;
             border-radius: 0.5rem;
@@ -214,6 +215,7 @@ button {
 
     .password {
         font-size: 2rem !important;
+        width: 85vw;
     }
 }
 
@@ -225,10 +227,6 @@ button {
             display: flex !important;
             margin-top: 5rem;
         }
-    }
-
-    .password {
-        width: 100vw;
     }
 }
 
