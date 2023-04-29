@@ -14,6 +14,7 @@ export default function CopyButton() {
     return (
         <button 
             className={`copy-button ${isClicked ? "animating" : ""}`}
+            type='button'
             title="Copy Password"
             aria-label="copy password button"
             onClick={handleClick}

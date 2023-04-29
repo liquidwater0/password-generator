@@ -30,6 +30,7 @@ export default function Checkbox({ id, checked, onChange, ...props }: CheckboxPr
             <button 
                 className={`checkbox ${isChecked ? "checked" : ""}`}
                 onClick={handleCheckboxClick}
+                type='button'
                 aria-label='checkbox'
                 aria-checked={isChecked}
                 aria-controls={id}
