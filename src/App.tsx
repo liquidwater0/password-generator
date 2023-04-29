@@ -21,11 +21,24 @@ function App() {
 									min={MIN_LENGTH}
 									max={MAX_LENGTH}
 									id="lengthInput"
-									defaultValue={passwordLength}
+									value={passwordLength}
 									onChange={event => {
+										const value = (event.target as HTMLInputElement).valueAsNumber;
+										let payload: number;
+
+										if (value < MIN_LENGTH) {
+											payload = MIN_LENGTH;
+										} else if (value > MAX_LENGTH) {
+											payload = MAX_LENGTH;
+										} else if (isNaN(value)) {
+											payload = MIN_LENGTH
+										} else {
+											payload = (event.target as HTMLInputElement).valueAsNumber;
+										}
+
 										dispatch({ 
 											type: ACTIONS.UPDATE_PASSWORD_LENGTH, 
-											payload: (event.target as HTMLInputElement).valueAsNumber 
+											payload: payload
 										});
 									}}
 								/>
