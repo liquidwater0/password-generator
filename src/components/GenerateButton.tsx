@@ -8,6 +8,7 @@ export default function GenerateButton() {
 
     function handleClick() {
         setIsClicked(true);
+        if (isClicked) return;
         generatePassword();
     }
 
