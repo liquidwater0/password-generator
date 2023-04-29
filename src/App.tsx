@@ -12,10 +12,7 @@ function App() {
 	return (
 		<main>
 			<aside className="side-bar">
-				<form onSubmit={event => {
-					event.preventDefault();
-					return;
-				}}>
+				<form onSubmit={event => event.preventDefault()}>
 					<ul>
 						<li className="length-input-item">
 							<div className="form-input-item">
