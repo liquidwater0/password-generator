@@ -23,20 +23,35 @@ function App() {
 									max={MAX_LENGTH}
 									defaultValue={passwordLength}
 									onChange={event => {
-										const value = (event.target as HTMLInputElement).valueAsNumber;
+										const input = (event.target as HTMLInputElement);
+										const valueAsNumber = input.valueAsNumber;
+										const valueAsString = input.value;
+										const hasDecimal = valueAsString.includes(".") ? true : false;
 										let length: number;
 
-										if (value < MIN_LENGTH || isNaN(value)) {
+										function getDeDecimalifiedNumber(number: number) {
+											const numberAsString = number.toString();
+											const indexOfDecimal = numberAsString.indexOf(".");
+											const deDecimalifiedNumber = +numberAsString.slice(0, indexOfDecimal);
+
+											return deDecimalifiedNumber;
+										}
+
+										if (hasDecimal) {
+											input.valueAsNumber = getDeDecimalifiedNumber(valueAsNumber);
+										}
+
+										if (valueAsNumber < MIN_LENGTH || isNaN(valueAsNumber)) {
 											length = MIN_LENGTH;
-										} else if (value > MAX_LENGTH) {
+										} else if (valueAsNumber > MAX_LENGTH) {
 											length = MAX_LENGTH;
 										} else {
-											length = value;
-										}
+											length = valueAsNumber;
+										}										
 
 										dispatch({ 
 											type: ACTIONS.UPDATE_PASSWORD_LENGTH, 
-											payload: length
+											payload: hasDecimal ? getDeDecimalifiedNumber(length) : length
 										});
 									}}
 								/>
