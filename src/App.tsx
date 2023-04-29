@@ -22,7 +22,6 @@ function App() {
 									min={MIN_LENGTH}
 									max={MAX_LENGTH}
 									value={passwordLength}
-									onKeyDown={event => event.preventDefault()}
 									onChange={event => {
 										const value = (event.target as HTMLInputElement).valueAsNumber;
 										let length: number;
