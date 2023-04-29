@@ -32,8 +32,7 @@ export default function NumberInput({ min, max, value, defaultValue, onChange, .
             onClick={() => inputRef.current.click()}
         >
             <input 
-                type="number" 
-                aria-hidden="true"
+                type="number"
                 min={min}
                 max={max}
                 value={value}
@@ -46,12 +45,14 @@ export default function NumberInput({ min, max, value, defaultValue, onChange, .
             <div className="arrow-buttons">
                 <button 
                     className='increment-button'
+                    aria-label='increment value button'
                     onClick={increment}
                 >
                     { <ChevronLeft/> }
                 </button>
                 <button 
                     className='decrement-button'
+                    aria-label='decrement value button'
                     onClick={decrement}
                 >
                     { <ChevronRight/> }

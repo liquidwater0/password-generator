@@ -32,7 +32,6 @@ export default function Checkbox({ id, checked, onChange, ...props }: CheckboxPr
                 onClick={handleCheckboxClick}
                 type='button'
                 aria-label='checkbox'
-                aria-checked={isChecked}
                 aria-controls={id}
             >
                 <div className="check">
@@ -43,8 +42,8 @@ export default function Checkbox({ id, checked, onChange, ...props }: CheckboxPr
             <input 
                 type="checkbox" 
                 style={{ display: "none" }}
-                aria-hidden="true"
                 id={id}
+                aria-checked={isChecked}
                 checked={checked}
                 onChange={handleInputChange}
                 ref={inputRef}
