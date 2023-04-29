@@ -18,25 +18,25 @@ function App() {
 							<div className="form-input-item">
 								<label htmlFor="lengthInput">Length</label>
 								<NumberInput
+									id="lengthInput"
 									min={MIN_LENGTH}
 									max={MAX_LENGTH}
-									id="lengthInput"
 									value={passwordLength}
 									onChange={event => {
 										const value = (event.target as HTMLInputElement).valueAsNumber;
-										let payload: number;
+										let length: number;
 
 										if (value < MIN_LENGTH || isNaN(value)) {
-											payload = MIN_LENGTH;
+											length = MIN_LENGTH;
 										} else if (value > MAX_LENGTH) {
-											payload = MAX_LENGTH;
+											length = MAX_LENGTH;
 										} else {
-											payload = (event.target as HTMLInputElement).valueAsNumber;
+											length = value;
 										}
 
 										dispatch({ 
 											type: ACTIONS.UPDATE_PASSWORD_LENGTH, 
-											payload: payload
+											payload: length
 										});
 									}}
 								/>
