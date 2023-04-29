@@ -22,28 +22,23 @@ function App() {
 									min={MIN_LENGTH}
 									max={MAX_LENGTH}
 									defaultValue={passwordLength}
+									onKeyDown={event => event.key === "." && event.preventDefault()}
 									onChange={event => {
 										const input = (event.target as HTMLInputElement);
 										const valueAsNumber = input.valueAsNumber;
-										const valueAsString = input.value;
 										let length: number;
 
-										if (valueAsString.includes(".")) {
-											input.valueAsNumber = Math.floor(valueAsNumber);
-										}
-
-										// if (valueAsNumber < MIN_LENGTH || isNaN(valueAsNumber)) {
-										// 	length = MIN_LENGTH;
-										// } else if (valueAsNumber > MAX_LENGTH) {
-										// 	length = MAX_LENGTH;
-										// } else {
-										// 	length = valueAsNumber;
-										// }										
+										if (valueAsNumber < MIN_LENGTH || isNaN(valueAsNumber)) {
+											length = MIN_LENGTH;
+										} else if (valueAsNumber > MAX_LENGTH) {
+											length = MAX_LENGTH;
+										} else {
+											length = valueAsNumber;
+										}										
 
 										dispatch({ 
 											type: ACTIONS.UPDATE_PASSWORD_LENGTH, 
-											payload: Math.floor(valueAsNumber)
-											// payload: Math.floor(length)
+											payload: length
 										});
 									}}
 								/>

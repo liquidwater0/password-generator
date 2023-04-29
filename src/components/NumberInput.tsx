@@ -1,15 +1,30 @@
-import { useRef, HTMLAttributes } from 'react';
+import { useRef, HTMLAttributes, ChangeEvent } from 'react';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 
 type NumberInputProps = {
     min?: number,
     max?: number,
     value?: number,
-    defaultValue?: number
+    defaultValue?: number,
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 } & HTMLAttributes<HTMLInputElement>;
 
-export default function NumberInput({ min, max, value, defaultValue, ...props }: NumberInputProps) {
+export default function NumberInput({ min, max, value, defaultValue, onChange, ...props }: NumberInputProps) {
     const inputRef = useRef<HTMLInputElement>(null!);
+
+    function handleChange(event: ChangeEvent<HTMLInputElement>) {
+        if (onChange) onChange(event);
+    }
+
+    function increment() {
+        inputRef.current.stepUp();
+        inputRef.current.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+
+    function decrement() {
+        inputRef.current.stepDown();
+        inputRef.current.dispatchEvent(new Event("change", { bubbles: true }));
+    }
 
     return (
         <div 
@@ -23,6 +38,7 @@ export default function NumberInput({ min, max, value, defaultValue, ...props }:
                 max={max}
                 value={value}
                 defaultValue={defaultValue}
+                onChange={handleChange}
                 ref={inputRef}
                 { ...props }
             />
@@ -30,13 +46,13 @@ export default function NumberInput({ min, max, value, defaultValue, ...props }:
             <div className="arrow-buttons">
                 <button 
                     className='increase-button'
-                    onClick={() => inputRef.current.stepUp()}
+                    onClick={increment}
                 >
                     { <ChevronLeft/> }
                 </button>
                 <button 
                     className='decrease-button'
-                    onClick={() => inputRef.current.stepDown()}
+                    onClick={decrement}
                 >
                     { <ChevronRight/> }
                 </button>
