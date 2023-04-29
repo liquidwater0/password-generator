@@ -1,20 +1,66 @@
-import { HTMLAttributes } from 'react';
+import { useRef, HTMLAttributes } from 'react';
+import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 
 type NumberInputProps = {
     min?: number,
     max?: number,
-    value?: number
+    value?: number,
+    defaultValue?: number
 } & HTMLAttributes<HTMLInputElement>;
 
-export default function NumberInput({ min, max, value, ...props }: NumberInputProps) {
+export default function NumberInput({ min, max, value, defaultValue, ...props }: NumberInputProps) {
+    const inputRef = useRef<HTMLInputElement>(null!);
+
     return (
-        <input 
+        <div 
             className='number-input'
-            type="number" 
-            min={min}
-            max={max}
-            value={value}
-            { ...props }
-        />
+            onClick={() => inputRef.current.click()}
+        >
+            <input 
+                type="number" 
+                aria-hidden="true"
+                min={min}
+                max={max}
+                value={value}
+                ref={inputRef}
+                { ...props }
+            />
+
+            <div className="arrow-buttons">
+                <button 
+                    className='increase-button'
+                    onClick={() => inputRef.current.stepUp()}
+                >
+                    { <ChevronLeft/> }
+                </button>
+                <button 
+                    className='decrease-button'
+                    onClick={() => inputRef.current.stepDown()}
+                >
+                    { <ChevronRight/> }
+                </button>
+            </div>
+        </div>
     );
 }
+
+// import { HTMLAttributes } from 'react';
+
+// type NumberInputProps = {
+//     min?: number,
+//     max?: number,
+//     value?: number
+// } & HTMLAttributes<HTMLInputElement>;
+
+// export default function NumberInput({ min, max, value, ...props }: NumberInputProps) {
+//     return (
+//         <input 
+//             className='number-input'
+//             type="number" 
+//             min={min}
+//             max={max}
+//             value={value}
+//             { ...props }
+//         />
+//     );
+// }
