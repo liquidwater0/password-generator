@@ -26,14 +26,10 @@ function App() {
 										const input = (event.target as HTMLInputElement);
 										const valueAsNumber = input.valueAsNumber;
 										const valueAsString = input.value;
-										const hasDecimal = valueAsString.includes(".") ? true : false;
 										let length: number;
 
-										if (hasDecimal) {
-											const indexOfDecimal = valueAsString.indexOf(".");
-											const deDecimalifiedNumber = +valueAsString.slice(0, indexOfDecimal);
-
-											input.valueAsNumber = deDecimalifiedNumber;
+										if (valueAsString.includes(".")) {
+											input.valueAsNumber = Math.floor(valueAsNumber);
 										}
 
 										if (valueAsNumber < MIN_LENGTH || isNaN(valueAsNumber)) {
