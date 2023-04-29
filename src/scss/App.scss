@@ -21,6 +21,23 @@
     --theme-text: white;
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+// ::-webkit-scrollbar {
+//     width: 0.5rem;
+// }
+
+// ::-webkit-scrollbar-thumb {
+//     background-color: var(--primary-color-1);
+//     border-radius: 1000px;
+
+//     &:hover {
+//         background-color: var(--primary-color-2);
+//     }
+// }
+
 html, body, #root, main {
     height: 100%;
 }
@@ -178,15 +195,17 @@ button {
 @media (max-width: 1050px) {
     main {
         grid-template-columns: auto;
-        grid-template-rows: 1fr max-content;
-        grid-template-areas: 
-            "content"
-            "sidebar";
+        place-content: center;
+        place-items: center;
     }
 
     .side-bar {
-        grid-area: sidebar;
+        position: absolute;
         border-radius: var(--border-radius) var(--border-radius) 0 0;
+        width: 100%;
+        bottom: 0;
+        transform: translateY(75%);
+        z-index: 1;
 
         ul {
             display: grid;
@@ -209,7 +228,7 @@ button {
     }
 
     .main {
-        grid-area: content;
+        position: fixed;
     }
 
     .password {
@@ -224,13 +243,13 @@ button {
 }
 
 @media (max-width: 600px) {
-    ul {
-        display: flex !important;
-        margin-top: 5rem;
-    }
-
-    .main {
-        margin-bottom: 5rem;
+    .side-bar {
+        transform: translateY(80%);
+    
+        ul {
+            display: flex !important;
+            margin-top: 5rem;
+        }
     }
 
     .password {
