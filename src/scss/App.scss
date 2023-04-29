@@ -70,6 +70,7 @@ button {
     }
 
     .generate-button {
+        --outline-thickness: 0.35em;
         --font-size: 65px;
         --translate-x: -50%;
 
@@ -81,7 +82,7 @@ button {
         width: 2em;
         height: 2em;
         border-radius: 100%;
-        outline: 0.35em solid var(--theme-1);
+        box-shadow: 0 0 0 var(--outline-thickness) var(--theme-1);
         background-color: var(--primary-color-2);
         color: var(--theme-text);
         top: 60%;
@@ -98,6 +99,8 @@ button {
             animation: spin 500ms ease-out;
             transform: translateX(var(--translate-x)) rotate(360deg);
         }
+
+       
 
         &:hover {
             background-color: var(--primary-color-3);
