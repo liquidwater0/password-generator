@@ -7,7 +7,7 @@ import PasswordBox from "./components/PasswordBox";
 
 function App() {
 	const { state, dispatch } = usePassword();
-	const { password, passwordLength, includeUppercase, includeLowercase, includeNumbers, includeSymbols } = state;
+	const { passwordLength, includeUppercase, includeLowercase, includeNumbers, includeSymbols } = state;
 
 	return (
 		<main>
