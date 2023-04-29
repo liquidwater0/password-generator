@@ -66,25 +66,3 @@
         outline: var(--border) solid var(--primary-color-3);
     }
 }
-
-// .number-input {
-//     background-color: var(--primary-color-2);
-//     color: white;
-//     font-size: 2rem;
-//     height: 1.5em;
-//     border-radius: 0.25em;
-//     border: none;
-//     text-align: center;
-//     transition: outline 250ms;
-
-//     &::-webkit-inner-spin-button,
-//     &::-webkit-outer-spin-button {
-//         position: absolute;
-//         opacity: 0;
-//     }
-
-//     &:hover,
-//     &:focus {
-//         outline: 2px solid var(--primary-color-3);
-//     }
-// }
