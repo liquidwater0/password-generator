@@ -95,7 +95,7 @@ button {
         }
 
         &.spinning {
-            animation: spin 1s ease-out;
+            animation: spin 500ms ease-out;
             transform: translateX(var(--translate-x)) rotate(360deg);
         }
 
