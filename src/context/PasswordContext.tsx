@@ -90,8 +90,6 @@ export default function PasswordProvider({ children }: { children: ReactNode }) 
 		if (includeSymbols) setDigitArray(prev => [...prev, ...getSymbols()]);
 	}, [includeUppercase, includeLowercase, includeNumbers, includeSymbols]);
 
-	
-
     function generatePassword() {
 		const randomPassword = new Array(passwordLength)
 			.fill("")
