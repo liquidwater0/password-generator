@@ -4,6 +4,7 @@ import NumberInput from "./components/NumberInput";
 import Checkbox from "./components/Checkbox";
 import GenerateButton from "./components/GenerateButton";
 import PasswordBox from "./components/PasswordBox";
+import FormItem from "./components/FormItem";
 
 function App() {
 	const { state, dispatch } = usePassword();
@@ -15,8 +16,11 @@ function App() {
 				<form onSubmit={event => event.preventDefault()}>
 					<ul>
 						<li className="length-input-item">
-							<div className="form-input-item">
-								<label htmlFor="lengthInput">Length</label>
+							<FormItem 
+								label="Length" 
+								htmlFor="lengthInput"
+								className="form-input-item"
+							>
 								<NumberInput
 									id="lengthInput"
 									min={MIN_LENGTH}
@@ -42,11 +46,14 @@ function App() {
 										});
 									}}
 								/>
-							</div>
+							</FormItem>
 						</li>
 						<li>
-							<div className="form-checkbox-item">
-								<label htmlFor="uppercaseCheckbox">Include Uppercase</label>
+							<FormItem 
+								label="Include Uppercase" 
+								htmlFor="uppercaseCheckbox"
+								className="form-checkbox-item"
+							>
 								<Checkbox
 									id="uppercaseCheckbox"
 									defaultChecked={includeUppercase}
@@ -57,11 +64,14 @@ function App() {
 										});
 									}}
 								/>
-							</div>
+							</FormItem>
 						</li>
 						<li>
-							<div className="form-checkbox-item">
-								<label htmlFor="lowercaseCheckbox">Include Lowercase</label>
+							<FormItem
+								label="Include Lowercase"
+								htmlFor="lowercaseCheckbox"
+								className="form-checkbox-item"
+							>
 								<Checkbox
 									id="lowercaseCheckbox"
 									defaultChecked={includeLowercase}
@@ -72,11 +82,14 @@ function App() {
 										});
 									}}
 								/>
-							</div>
+							</FormItem>
 						</li>
 						<li>
-							<div className="form-checkbox-item">
-								<label htmlFor="numbersCheckbox">Include Numbers</label>
+							<FormItem
+								label="Include Numbers"
+								htmlFor="numbersCheckbox"
+								className="form-checkbox-item"
+							>
 								<Checkbox
 									id="numbersCheckbox"
 									defaultChecked={includeNumbers}
@@ -87,11 +100,14 @@ function App() {
 										});
 									}}
 								/>
-							</div>
+							</FormItem>
 						</li>
 						<li>
-							<div className="form-checkbox-item">
-								<label htmlFor="symbolsCheckbox">Include Symbols</label>
+							<FormItem
+								label="Include Symbols"
+								htmlFor="symbolsCheckbox"
+								className="form-checkbox-item"
+							>
 								<Checkbox
 									id="symbolsCheckbox"
 									defaultChecked={includeSymbols}
@@ -102,7 +118,7 @@ function App() {
 										});
 									}}
 								/>
-							</div>
+							</FormItem>
 						</li>
 					</ul>
 

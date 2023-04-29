@@ -73,17 +73,18 @@ button {
         list-style: none;
     }
 
-    .form-input-item {
+    .form-item {
         display: flex;
-        flex-direction: column;
         gap: 1rem;
     }
 
+    .form-input-item {
+        flex-direction: column;
+    }
+
     .form-checkbox-item {
-        display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 1rem;
     }
 
     .generate-button {
