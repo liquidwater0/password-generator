@@ -3,7 +3,7 @@ import { ACTIONS, MIN_LENGTH, MAX_LENGTH, usePassword } from "./context/Password
 import NumberInput from "./components/NumberInput";
 import Checkbox from "./components/Checkbox";
 import GenerateButton from "./components/GenerateButton";
-import CopyButton from "./components/CopyButton";
+import PasswordBox from "./components/PasswordBox";
 
 function App() {
 	const { state, dispatch } = usePassword();
@@ -110,14 +110,12 @@ function App() {
 
 			<div className="main">
 				<div className="password-container">
-					<div className="password">{ password }</div>
+					<PasswordBox/>
 					{/* <div 
 						className="strength-meter"
 						aria-label="strong password"
 					/> */}
 				</div>
-
-				<CopyButton/>
 			</div>
 		</main>
 	)
