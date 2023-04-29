@@ -29,16 +29,11 @@ function App() {
 										const hasDecimal = valueAsString.includes(".") ? true : false;
 										let length: number;
 
-										function getDeDecimalifiedNumber(number: number) {
-											const numberAsString = number.toString();
-											const indexOfDecimal = numberAsString.indexOf(".");
-											const deDecimalifiedNumber = +numberAsString.slice(0, indexOfDecimal);
-
-											return deDecimalifiedNumber;
-										}
-
 										if (hasDecimal) {
-											input.valueAsNumber = getDeDecimalifiedNumber(valueAsNumber);
+											const indexOfDecimal = valueAsString.indexOf(".");
+											const deDecimalifiedNumber = +valueAsString.slice(0, indexOfDecimal);
+
+											input.valueAsNumber = deDecimalifiedNumber;
 										}
 
 										if (valueAsNumber < MIN_LENGTH || isNaN(valueAsNumber)) {
@@ -51,7 +46,7 @@ function App() {
 
 										dispatch({ 
 											type: ACTIONS.UPDATE_PASSWORD_LENGTH, 
-											payload: hasDecimal ? getDeDecimalifiedNumber(length) : length
+											payload: Math.floor(length)
 										});
 									}}
 								/>
