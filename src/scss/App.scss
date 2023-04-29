@@ -1,5 +1,7 @@
 @use "./numberInput" as *;
 @use "./checkbox" as *;
+@use "./generateButton" as *;
+@use "./passwordBox" as *;
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 *, *::before, *::after {
@@ -86,44 +88,6 @@ button {
         justify-content: space-between;
         align-items: center;
     }
-
-    .generate-button {
-        --outline-thickness: 0.35em;
-        --font-size: 65px;
-        --translate-x: -50%;
-
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: var(--font-size);
-        width: 2em;
-        height: 2em;
-        border-radius: 100%;
-        box-shadow: 0 0 0 var(--outline-thickness) var(--theme-1);
-        background-color: var(--primary-color-2);
-        color: var(--theme-text);
-        top: 60%;
-        left: 100%;
-        transform: translateX(var(--translate-x));
-        transform-origin: center;
-        transition: background-color 250ms;
-        
-        svg {
-            font-size: 1em;
-        }
-
-        &.spinning {
-            animation: spin 500ms ease-out;
-            transform: translateX(var(--translate-x)) rotate(360deg);
-        }
-
-       
-
-        &:hover {
-            background-color: var(--primary-color-3);
-        }
-    }
 }
 
 .main {
@@ -137,30 +101,6 @@ button {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-        .password {
-            background-color: var(--theme-2);
-            color: var(--theme-text);
-            padding: 1em;
-            min-width: 15rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border-radius: 0.5rem;
-            word-wrap:break-word;
-            cursor: pointer;
-            transition: 
-                scale 250ms,
-                transform 250ms;
-
-            &.animating {
-                animation: fadeOutShadow 500ms forwards;
-                scale: 0.95;
-            }
-
-            &:hover {
-                transform: translateY(-0.2rem);
-            }
-        } 
 
         .strength-meter {
             --strength-color: red;
@@ -202,21 +142,10 @@ button {
                 grid-area: input;
             }
         }
-
-        .generate-button {
-            top: 0;
-            left: 50%;
-            top: calc(-2 * var(--font-size) / 2);
-        }
     }
 
     .main {
         position: fixed;
-    }
-
-    .password {
-        font-size: 2rem !important;
-        width: 85vw;
     }
 }
 
@@ -229,14 +158,4 @@ button {
             margin-top: 5rem;
         }
     }
-}
-
-@keyframes spin {
-    0% { transform: translateX(var(--translate-x)) rotate(0deg) }
-    100% { transform: translateX(var(--translate-x)) rotate(360deg) }
-}
-
-@keyframes fadeOutShadow {
-    0% { box-shadow: 0 0 0 0 hsla(0, 0%, 0%, 0.12) }
-    100% { box-shadow: 0 0 0 2.5rem hsla(0, 0%, 0%, 0) }
 }

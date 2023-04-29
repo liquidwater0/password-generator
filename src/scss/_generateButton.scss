@@ -1,0 +1,48 @@
+.generate-button {
+    --outline-thickness: 0.35em;
+    --font-size: 65px;
+    --translate-x: -50%;
+
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size);
+    width: 2em;
+    height: 2em;
+    border-radius: 100%;
+    box-shadow: 0 0 0 var(--outline-thickness) var(--theme-1);
+    background-color: var(--primary-color-2);
+    color: var(--theme-text);
+    top: 60%;
+    left: 100%;
+    transform: translateX(var(--translate-x));
+    transform-origin: center;
+    transition: background-color 250ms;
+    
+    svg {
+        font-size: 1em;
+    }
+
+    &.spinning {
+        animation: spin 500ms ease-out;
+        transform: translateX(var(--translate-x)) rotate(360deg);
+    }
+
+    &:hover {
+        background-color: var(--primary-color-3);
+    }
+}
+
+@media (max-width: 1050px) {
+    .generate-button {
+        top: 0;
+        left: 50%;
+        top: calc(-2 * var(--font-size) / 2);
+    }
+}
+
+@keyframes spin {
+    0% { transform: translateX(var(--translate-x)) rotate(0deg) }
+    100% { transform: translateX(var(--translate-x)) rotate(360deg) }
+}
