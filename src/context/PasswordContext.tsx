@@ -46,7 +46,7 @@ export const ACTIONS = {
 
 const initialState: State = {
 	password: "",
-	passwordLength: MIN_LENGTH,
+	passwordLength: 15,
 	includeUppercase: true,
 	includeLowercase: true,
 	includeNumbers: true,
@@ -77,6 +77,10 @@ export default function PasswordProvider({ children }: { children: ReactNode }) 
 	const { password, passwordLength, includeUppercase, includeLowercase, includeNumbers, includeSymbols } = state;
 	const [digitArray, setDigitArray] = useState<string[]>([]);
 
+	useEffect(() => {
+		generatePassword();
+	}, [digitArray]);
+
     useEffect(() => {
 		setDigitArray([]);
 		
@@ -85,6 +89,8 @@ export default function PasswordProvider({ children }: { children: ReactNode }) 
 		if (includeNumbers) setDigitArray(prev => [...prev, ...getNumbers()]);
 		if (includeSymbols) setDigitArray(prev => [...prev, ...getSymbols()]);
 	}, [includeUppercase, includeLowercase, includeNumbers, includeSymbols]);
+
+	
 
     function generatePassword() {
 		const randomPassword = new Array(passwordLength)
