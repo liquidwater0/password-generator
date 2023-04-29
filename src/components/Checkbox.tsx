@@ -2,9 +2,9 @@ import { useState, useEffect, useRef, HTMLAttributes, ChangeEvent, FormEventHand
 import { Check } from '@mui/icons-material';
 
 type CheckboxProps = {
-    id: string,
-    checked: boolean,
-    onChange: FormEventHandler<HTMLInputElement>
+    id?: string,
+    checked?: boolean,
+    onChange?: FormEventHandler<HTMLInputElement>
 } & HTMLAttributes<HTMLInputElement>;
 
 export default function Checkbox({ id, checked, onChange, ...props }: CheckboxProps) {

@@ -21,7 +21,7 @@ function App() {
 									min={MIN_LENGTH}
 									max={MAX_LENGTH}
 									id="lengthInput"
-									value={passwordLength}
+									defaultValue={passwordLength}
 									onChange={event => {
 										dispatch({ 
 											type: ACTIONS.UPDATE_PASSWORD_LENGTH, 
@@ -36,7 +36,7 @@ function App() {
 								<label htmlFor="uppercaseCheckbox">Include Uppercase</label>
 								<Checkbox
 									id="uppercaseCheckbox"
-									checked={includeUppercase}
+									defaultChecked={includeUppercase}
 									onChange={event => {
 										dispatch({ 
 											type: ACTIONS.UPDATE_INCLUDE_UPPERCASE, 
@@ -51,7 +51,7 @@ function App() {
 								<label htmlFor="lowercaseCheckbox">Include Lowercase</label>
 								<Checkbox
 									id="lowercaseCheckbox"
-									checked={includeLowercase}
+									defaultChecked={includeLowercase}
 									onChange={event => {
 										dispatch({ 
 											type: ACTIONS.UPDATE_INCLUDE_LOWERCASE, 
@@ -66,7 +66,7 @@ function App() {
 								<label htmlFor="numbersCheckbox">Include Numbers</label>
 								<Checkbox
 									id="numbersCheckbox"
-									checked={includeNumbers}
+									defaultChecked={includeNumbers}
 									onChange={event => {
 										dispatch({ 
 											type: ACTIONS.UPDATE_INCLUDE_NUMBERS,
@@ -81,7 +81,7 @@ function App() {
 								<label htmlFor="symbolsCheckbox">Include Symbols</label>
 								<Checkbox
 									id="symbolsCheckbox"
-									checked={includeSymbols}
+									defaultChecked={includeSymbols}
 									onChange={event => {
 										dispatch({ 
 											type: ACTIONS.UPDATE_INCLUDE_SYMBOLS, 

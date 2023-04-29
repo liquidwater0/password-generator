@@ -3,7 +3,7 @@ import { HTMLAttributes } from 'react';
 type NumberInputProps = {
     min?: number,
     max?: number,
-    value: number
+    value?: number
 } & HTMLAttributes<HTMLInputElement>;
 
 export default function NumberInput({ min, max, value, ...props }: NumberInputProps) {
