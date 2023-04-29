@@ -4,7 +4,7 @@ import { usePassword } from "../context/PasswordContext";
 
 export default function GenerateButton() {
     const { generatePassword } = usePassword();
-    const [isClicked, setIsClicked] = useState<boolean>(false);
+    const [isClicked, setIsClicked] = useState<boolean>(true);
 
     function handleClick() {
         setIsClicked(true);
