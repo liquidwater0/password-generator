@@ -21,7 +21,7 @@ function App() {
 									id="lengthInput"
 									min={MIN_LENGTH}
 									max={MAX_LENGTH}
-									value={passwordLength}
+									defaultValue={passwordLength}
 									onChange={event => {
 										const value = (event.target as HTMLInputElement).valueAsNumber;
 										let length: number;

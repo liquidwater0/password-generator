@@ -22,6 +22,7 @@ export default function NumberInput({ min, max, value, defaultValue, ...props }:
                 min={min}
                 max={max}
                 value={value}
+                defaultValue={defaultValue}
                 ref={inputRef}
                 { ...props }
             />
