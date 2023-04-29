@@ -32,17 +32,18 @@ function App() {
 											input.valueAsNumber = Math.floor(valueAsNumber);
 										}
 
-										if (valueAsNumber < MIN_LENGTH || isNaN(valueAsNumber)) {
-											length = MIN_LENGTH;
-										} else if (valueAsNumber > MAX_LENGTH) {
-											length = MAX_LENGTH;
-										} else {
-											length = valueAsNumber;
-										}										
+										// if (valueAsNumber < MIN_LENGTH || isNaN(valueAsNumber)) {
+										// 	length = MIN_LENGTH;
+										// } else if (valueAsNumber > MAX_LENGTH) {
+										// 	length = MAX_LENGTH;
+										// } else {
+										// 	length = valueAsNumber;
+										// }										
 
 										dispatch({ 
 											type: ACTIONS.UPDATE_PASSWORD_LENGTH, 
-											payload: Math.floor(length)
+											payload: Math.floor(valueAsNumber)
+											// payload: Math.floor(length)
 										});
 									}}
 								/>
