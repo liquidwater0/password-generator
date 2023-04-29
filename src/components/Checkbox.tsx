@@ -1,36 +1,37 @@
-import { useState, useEffect, useRef, HTMLAttributes, ChangeEvent } from 'react';
+import { useState, useEffect, useRef, HTMLAttributes, ChangeEvent, FormEventHandler } from 'react';
 import { Check } from '@mui/icons-material';
 
 type CheckboxProps = {
     id: string,
-    onChange: ChangeEvent
+    checked: boolean,
+    onChange: FormEventHandler<HTMLInputElement>
 } & HTMLAttributes<HTMLInputElement>;
 
-export default function Checkbox({ id, onChange, ...props }: CheckboxProps) {
-    const [checked, setChecked] = useState<boolean>(false);
+export default function Checkbox({ id, checked, onChange, ...props }: CheckboxProps) {
+    const [isChecked, setIsChecked] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement>(null!);
 
     useEffect(() => {
-        setChecked(inputRef.current.checked);
+        setIsChecked(inputRef.current.checked);
     }, []);
 
     function handleCheckboxClick() {
         inputRef.current.click();
-        setChecked(inputRef.current.checked);
+        setIsChecked(inputRef.current.checked);
     }
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
         if (onChange) onChange(event);
-        setChecked(event.target.checked);
+        setIsChecked(event.target.checked);
     }
 
     return (
         <div>
             <button 
-                className={`checkbox ${checked ? "checked" : ""}`}
+                className={`checkbox ${isChecked ? "checked" : ""}`}
                 onClick={handleCheckboxClick}
                 aria-label='checkbox'
-                aria-checked={checked}
+                aria-checked={isChecked}
                 aria-controls={id}
             >
                 <div className="check">
@@ -41,10 +42,11 @@ export default function Checkbox({ id, onChange, ...props }: CheckboxProps) {
             <input 
                 type="checkbox" 
                 style={{ display: "none" }}
-                ref={inputRef}
                 aria-hidden="true"
-                onChange={handleInputChange}
                 id={id}
+                checked={checked}
+                onChange={handleInputChange}
+                ref={inputRef}
                 { ...props }
             />
         </div>
