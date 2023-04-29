@@ -1,11 +1,12 @@
-import { useState, useEffect, useRef, HTMLAttributes } from 'react';
+import { useState, useEffect, useRef, HTMLAttributes, ChangeEvent } from 'react';
 import { Check } from '@mui/icons-material';
 
 type CheckboxProps = {
-    id: string
+    id: string,
+    onChange: ChangeEvent
 } & HTMLAttributes<HTMLInputElement>;
 
-export default function Checkbox({ id, ...props }: CheckboxProps) {
+export default function Checkbox({ id, onChange, ...props }: CheckboxProps) {
     const [checked, setChecked] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement>(null!);
 
@@ -16,6 +17,11 @@ export default function Checkbox({ id, ...props }: CheckboxProps) {
     function handleCheckboxClick() {
         inputRef.current.click();
         setChecked(inputRef.current.checked);
+    }
+
+    function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
+        if (onChange) onChange(event);
+        setChecked(event.target.checked);
     }
 
     return (
@@ -37,6 +43,7 @@ export default function Checkbox({ id, ...props }: CheckboxProps) {
                 style={{ display: "none" }}
                 ref={inputRef}
                 aria-hidden="true"
+                onChange={handleInputChange}
                 id={id}
                 { ...props }
             />
