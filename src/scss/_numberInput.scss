@@ -18,8 +18,8 @@
         outline: var(--border) solid var(--primary-color-3);
         right: 0px;
 
-        .increase-button,
-        .decrease-button {
+        .increment-button,
+        .decrement-button {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,11 +32,11 @@
             }
         }
 
-        .increase-button {
+        .increment-button {
             rotate: 90deg;
         }
 
-        .decrease-button {
+        .decrement-button {
             rotate: 90deg;
         }
     }

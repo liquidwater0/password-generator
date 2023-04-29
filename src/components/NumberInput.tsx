@@ -45,13 +45,13 @@ export default function NumberInput({ min, max, value, defaultValue, onChange, .
 
             <div className="arrow-buttons">
                 <button 
-                    className='increase-button'
+                    className='increment-button'
                     onClick={increment}
                 >
                     { <ChevronLeft/> }
                 </button>
                 <button 
-                    className='decrease-button'
+                    className='decrement-button'
                     onClick={decrement}
                 >
                     { <ChevronRight/> }
