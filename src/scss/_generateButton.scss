@@ -26,11 +26,16 @@
 
     &.spinning {
         animation: spin 500ms ease-out;
-        transform: translateX(var(--translate-x)) rotate(360deg);
     }
 
     &:hover {
         background-color: var(--primary-color-3);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .generate-button.spinning {
+        transform: translateX(var(--translate-x)) rotate(0deg) !important;
     }
 }
 
