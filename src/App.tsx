@@ -56,7 +56,7 @@ function App() {
 							>
 								<Checkbox
 									id="uppercaseCheckbox"
-									defaultChecked={includeUppercase}
+									checked={includeUppercase}
 									onChange={event => {
 										dispatch({ 
 											type: ACTIONS.UPDATE_INCLUDE_UPPERCASE, 
@@ -74,7 +74,7 @@ function App() {
 							>
 								<Checkbox
 									id="lowercaseCheckbox"
-									defaultChecked={includeLowercase}
+									checked={includeLowercase}
 									onChange={event => {
 										dispatch({ 
 											type: ACTIONS.UPDATE_INCLUDE_LOWERCASE, 
@@ -92,7 +92,7 @@ function App() {
 							>
 								<Checkbox
 									id="numbersCheckbox"
-									defaultChecked={includeNumbers}
+									checked={includeNumbers}
 									onChange={event => {
 										dispatch({ 
 											type: ACTIONS.UPDATE_INCLUDE_NUMBERS,
@@ -110,7 +110,7 @@ function App() {
 							>
 								<Checkbox
 									id="symbolsCheckbox"
-									defaultChecked={includeSymbols}
+									checked={includeSymbols}
 									onChange={event => {
 										dispatch({ 
 											type: ACTIONS.UPDATE_INCLUDE_SYMBOLS, 
