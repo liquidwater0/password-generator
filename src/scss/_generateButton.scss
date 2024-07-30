@@ -1,3 +1,5 @@
+@use "./colors" as *;
+
 .generate-button {
     --outline-thickness: 0.35em;
     --font-size: 65px;
@@ -11,9 +13,9 @@
     width: 2em;
     height: 2em;
     border-radius: 100%;
-    box-shadow: 0 0 0 var(--outline-thickness) var(--theme-1);
-    background-color: var(--primary-color-2);
-    color: var(--theme-text);
+    box-shadow: 0 0 0 var(--outline-thickness) $color-background;
+    background-color: $color-primary;
+    color: $color-background;
     top: 60%;
     left: 100%;
     transform: translateX(var(--translate-x));
@@ -29,7 +31,7 @@
     }
 
     &:hover {
-        background-color: var(--primary-color-3);
+        background-color: darken($color-primary, 15%);
     }
 }
 
@@ -48,6 +50,11 @@
 }
 
 @keyframes spin {
-    0% { transform: translateX(var(--translate-x)) rotate(0deg) }
-    100% { transform: translateX(var(--translate-x)) rotate(360deg) }
+    0% { 
+        transform: translateX(var(--translate-x)) rotate(0deg);
+    }
+    
+    100% { 
+        transform: translateX(var(--translate-x)) rotate(360deg);
+    }
 }
